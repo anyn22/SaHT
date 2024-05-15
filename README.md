@@ -1,1 +1,1 @@
-# SAT-HG: Structure-Aware Transformer Model for Hypergraph
+# SaHT: Structure-Aware Transformer Model for Hypergraph
