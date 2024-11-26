@@ -34,8 +34,8 @@ from hypergraph_construction import hyG_function
 device = torch.device("cuda:1" if torch.cuda.is_available() else "CPU")
 
 dataset_name = 'wiki'#[cora,citeseer,dblp,PubMed, wiki, LastFMAsia]
-path_to_data = '/home/ksaifuddin1/Experiments/data'
-path_to_label = f'/home/ksaifuddin1/Experiments/data/label_{dataset_name}.txt'
+path_to_data = '/Experiments/data'
+path_to_label = f'/Experiments/data/label_{dataset_name}.txt'
 random_state=1
 
 # Load and prepare data
@@ -73,7 +73,7 @@ optimizer = torch.optim.Adam(itertools.chain(model.parameters(), gcn_model.param
 best_val_acc = 0
 patience=0
 
-file_path = f'/home/ksaifuddin1/Hypergraph Transformer/thtn/outputs/{dataset_name}.txt'
+file_path = f'/Hypergraph Transformer/thtn/outputs/{dataset_name}.txt'
 with open(file_path, 'a') as file:
     for i in range(200):
         model.train()
@@ -102,7 +102,7 @@ with open(file_path, 'a') as file:
             best_val_acc = val_acc
             E=i
             patience=0
-            file_path = f'/home/ksaifuddin1/Hypergraph Transformer/thtn/pth_folder/latest_{dataset_name}.pth'
+            file_path = f'/Hypergraph Transformer/thtn/pth_folder/latest_{dataset_name}.pth'
             torch.save(test_pred, file_path)
           else:
             patience+=1
@@ -113,7 +113,7 @@ with open(file_path, 'a') as file:
           print(train_statement)
           file.write(train_statement+'\n')
 
-    file_path = f'/home/ksaifuddin1/Hypergraph Transformer/thtn/pth_folder/latest_{dataset_name}.pth'
+    file_path = f'/Hypergraph Transformer/thtn/pth_folder/latest_{dataset_name}.pth'
     best_test_pred = torch.load(file_path)
     with torch.no_grad():
       test_pred=best_test_pred
