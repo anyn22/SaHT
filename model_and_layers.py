@@ -62,7 +62,6 @@ def k_core(graph):
         return normalized_dict
 
 
-"""HyGNN"""
 def local_clustering_coefficient(com_graph):
     clustering_coefficients = {}
     hyperedge_nodes = list(com_graph.nodes())
