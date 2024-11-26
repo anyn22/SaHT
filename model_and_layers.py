@@ -178,7 +178,6 @@ class THTN(nn.Module):
         #attention_score = F.softmax((nodes.mailbox['Attn']), dim=1)
         #aggr = torch.sum(attention_score.unsqueeze(-1) * nodes.mailbox['v'], dim=1)
 
-
         lst_node=nodes.nodes().tolist()
         updated_attention_score_list=[]
         node_embedding_gcn_list=[]
@@ -240,8 +239,7 @@ class THTN(nn.Module):
         updated_attention_score_list = F.softmax(updated_attention_score_list, dim=1)
 
         aggr = torch.sum(updated_attention_score_list.unsqueeze(-1) * nodes.mailbox['v'], dim=1)
-
-
+        
         return {'h': aggr}
 
     def forward(self, hyG, vfeat, efeat, centrality_values,uniqueness,eign_vec,node_feat,g,gcn_model,first_layer, last_layer):
@@ -255,7 +253,6 @@ class THTN(nn.Module):
 
                 un=self.un_embedding(uniqueness)
 
-
                 feat_v=feat_v+pe
                 feat_v_gcn=gcn_model(g,node_feat).to(device)
                 feat_v=feat_v+feat_v_gcn
@@ -267,7 +264,6 @@ class THTN(nn.Module):
                 cs=self.cs_embedding(centrality_values)
 
                 un=self.un_embedding(uniqueness)
-
 
                 feat_v=feat_v+pe
                 feat_v_gcn=gcn_model(g,node_feat).to(device)
@@ -297,7 +293,6 @@ class THTN(nn.Module):
             hyG.apply_edges(self.attention, etype='con')
             hyG.update_all(self.message_func, self.reduce_func2, etype='con')
             feat_v_transformed = hyG.ndata['h']['node']
-
 
             feat_v_add_norm=self.add_and_norm2(feat_v_transformed,feat_v)
             feat_v_ffn=self.ffn2(feat_v_add_norm)
