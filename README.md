@@ -1,1 +1,1 @@
-# SaHT: Structure-Aware Transformer Model for Hypergraph
+# THTN: Topology-guided Hypergraph Transformer Network
